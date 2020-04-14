@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import firebase from 'firebase'
+
 
 // Importing Bootstrap vue
 import BootstrapVue from 'bootstrap-vue'
@@ -10,10 +12,20 @@ Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+
+let app = null
+
+// waith for firebase before starting the app
+firebase.auth().onAuthStateChanged(() => {
+
+  // init app if not exists
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      components: {App},
+      template: '<App/>'
+    })
+  }
+
 })
