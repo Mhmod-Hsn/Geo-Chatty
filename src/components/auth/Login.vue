@@ -57,7 +57,7 @@
               this.$router.push({name: 'GMap'})
             })
             .catch(e => {
-              this.feedback = e.msg
+              this.feedback = e.message
             })
 
           this.feedback = null
