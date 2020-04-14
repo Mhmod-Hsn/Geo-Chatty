@@ -27,7 +27,8 @@
 							v-model="password"
 						></b-form-input>
 					</b-form-group>
-					<b-button class="float-right" type="submit" variant="primary">Login
+					<b-button class="btn-block" type="submit"
+					          variant="primary">Login
 					</b-button>
 				</b-form>
 			</div>

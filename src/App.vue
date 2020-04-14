@@ -33,5 +33,10 @@
 			.nav-link
 				color: rgba(255, 255, 255, 0.8)
 
-
+	.login,
+	.signup
+		.card
+			width: 400px
+			max-width: 90%
+			margin: auto
 </style>

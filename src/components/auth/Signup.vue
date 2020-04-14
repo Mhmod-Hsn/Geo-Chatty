@@ -39,7 +39,7 @@
 							v-model="alias"
 						></b-form-input>
 					</b-form-group>
-					<b-button class="float-right" type="submit" variant="primary">Register
+					<b-button class="btn-block" type="submit" variant="primary">Register
 					</b-button>
 				</b-form>
 			</div>
