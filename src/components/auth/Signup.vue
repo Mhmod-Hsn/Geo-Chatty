@@ -52,6 +52,7 @@
   import slugify from 'slugify'
   import db from '@/firebase/init'
   import firebase from 'firebase'
+  import functions from 'firebase/functions'
 
   export default {
     name: "Signup",
@@ -74,11 +75,11 @@
             remove: /[$*_+~.()'"!\-#:@]/g,
             lower: true
           })
-          let ref = db.collection('users').doc(this.slug)
+          let checkAlias = firebase.functions().httpsCallable('checkAlias')
+	        checkAlias({ slug: this.slug }).then(result=>{
 
-          // Check alias existance
-          ref.get().then(doc => {
-            if (doc.exists) {
+	          // Check alias existance
+            if (!result.data.unique) {
               this.feedback = 'this alias already exists, try another one'
             } else {
 
@@ -86,7 +87,7 @@
                 .then((cred) => {
 
                   //  Register User in firebase ( users )
-                  ref.set({
+                  db.collection('users').doc(this.slug).set({
                     email: this.email,
                     alias: this.alias,
                     geolocation: null,
@@ -100,8 +101,9 @@
                   this.feedback = e.message
                 })
             }
-          })
-          // this.feedback = null
+	        })
+
+          this.feedback = null
         } else {
           this.feedback = 'you must enter all fields'
         }
