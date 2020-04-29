@@ -2,6 +2,8 @@
 
 > [Try a Demo ](https://geo-chatty.web.app)
 
+![](preview.jpg)
+
 # geo-chat
 
 > A Vue.js project
